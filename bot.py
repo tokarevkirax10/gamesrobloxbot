@@ -170,7 +170,7 @@ def format_games(games):
 async def show_genre(update, key):
     genre = GENRES[key]
     text = f"<b>{genre['emoji']} {genre['name']}</b>\n\n{format_games(genre['games'])}"
-    await update.message.reply_text(text, parse_mode="HTML", reply_markup=main_menu())
+    await update.message.reply_text(text, parse_mode="HTML", reply_markup=main_menu(), disable_web_page_preview=True)
 
 async def random_game(update: Update):
     genre_key = random.choice(list(GENRES.keys()))
@@ -180,7 +180,7 @@ async def random_game(update: Update):
         f"\U0001f3b2 <b>Рандом</b>\n\n"
         f"Жанр: {genre['emoji']} {genre['name']}\n"
         f"Игра: <a href='{url}'>{name}</a>",
-        parse_mode="HTML", reply_markup=main_menu()
+        parse_mode="HTML", reply_markup=main_menu(), disable_web_page_preview=True
     )
 
 async def donate_menu(update: Update):
