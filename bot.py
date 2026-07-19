@@ -17,6 +17,7 @@ from telegram.ext import (
 TOKEN = os.environ["BOT_TOKEN"]
 PORT = int(os.environ.get("PORT", 8080))
 RENDER_URL = os.environ.get("RENDER_EXTERNAL_URL")
+ADMIN_ID = 766347597
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
@@ -84,18 +85,41 @@ GENRES = {
 }
 
 STATS_PATH = os.path.join(os.path.dirname(__file__), "stats.json")
+USERS_PATH = os.path.join(os.path.dirname(__file__), "users.json")
 
 LINK = "https://www.roblox.com/games/{}"
 
-def load_stats():
-    if not os.path.exists(STATS_PATH):
-        return {"total_donated": 0, "donations": []}
-    with open(STATS_PATH) as f:
+def load_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path) as f:
         return json.load(f)
 
+def save_json(path, data):
+    with open(path, "w") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+def load_stats():
+    return load_json(STATS_PATH, {"total_donated": 0, "donations": []})
+
 def save_stats(stats):
-    with open(STATS_PATH, "w") as f:
-        json.dump(stats, f, indent=2, ensure_ascii=False)
+    save_json(STATS_PATH, stats)
+
+def save_user(user):
+    users = load_json(USERS_PATH, [])
+    existing = next((u for u in users if u["id"] == user.id), None)
+    now = datetime.now().isoformat()
+    if existing:
+        existing["last_active"] = now
+    else:
+        users.append({
+            "id": user.id,
+            "username": user.username or None,
+            "name": user.first_name,
+            "date": now,
+            "last_active": now,
+        })
+    save_json(USERS_PATH, users)
 
 def main_menu():
     kb = [
@@ -108,6 +132,7 @@ def main_menu():
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
+    save_user(user)
     await update.message.reply_text(
         f"\U0001f3ae <b>Roblox Плейсы</b>\n\n"
         f"Привет, {user.first_name}!\n\n"
@@ -210,12 +235,30 @@ async def payment_done(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=main_menu()
     )
 
+def count_recent(users, field, hours=24):
+    from datetime import timedelta
+    cutoff = datetime.now() - timedelta(hours=hours)
+    return sum(1 for u in users if u.get(field) and datetime.fromisoformat(u[field]) >= cutoff)
+
 async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("Команда только для админа")
+        return
     st = load_stats()
-    count = len(st["donations"])
+    users = load_json(USERS_PATH, [])
+    don_count = len(st["donations"])
     total = st["total_donated"]
     last = st["donations"][-1] if st["donations"] else None
-    text = f"\U0001f4ca <b>Статистика бота</b>\n\nВсего донатов: {count}\nВсего звёзд: {total}"
+    new_24h = count_recent(users, "date")
+    active_24h = count_recent(users, "last_active")
+    text = (
+        f"\U0001f4ca <b>Статистика бота</b>\n\n"
+        f"Всего пользователей: {len(users)}\n"
+        f"Новых за 24ч: {new_24h}\n"
+        f"Активных за 24ч: {active_24h}\n"
+        f"Донатов: {don_count}\n"
+        f"Всего звёзд: {total}"
+    )
     if last:
         text += f"\nПоследний: {last['username']} — {last['amount']} \u2b50"
     await update.message.reply_text(text, parse_mode="HTML")
