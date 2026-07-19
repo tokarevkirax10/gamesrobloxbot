@@ -21,66 +21,69 @@ ADMIN_ID = 766347597
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
+S = "https://www.roblox.com/share?code={}&type=ExperienceDetails&stamp=1"
+ZO = "https://ro.blox.com/Ebh5?pid=share&is_retargeting=true&af_dp=roblox%3A%2F%2Fnavigation%2Fgame_details%3FgameId%3D9351808693&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2F72811796045029"
+
 GENRES = {
     "tycoons": {"name": "Тайкуны \U0001f3ea", "emoji": "\U0001f3ea", "games": [
-        ("Restaurant Tycoon 2", "0000000001"),
-        ("Theme Park Tycoon 2", "0000000002"),
-        ("Retail Tycoon 2", "0000000003"),
-        ("School Lunch Tycoon", "0000000004"),
-        ("Pizza Factory Tycoon", "0000000005"),
-        ("Car Wash Tycoon", "0000000006"),
-        ("Airport Tycoon", "0000000007"),
-        ("Theme Park Tycoon 1", "0000000008"),
-        ("Aquatic Tycoon", "0000000009"),
-        ("Mall Tycoon", "0000000010"),
+        ("Restaurant Tycoon 2", S.format("b8fe46679efd1140b5ea8b0a04a6b21d")),
+        ("Retail Tycoon 2", S.format("daea237eb0d1c646b125dea6e1598926")),
+        ("Theme Park Tycoon 2", S.format("95a1f7ea771f674ca2e36101f242074f")),
+        ("Lumber Tycoon 2", S.format("aeef0f294d695e4bbd1ea87ddfedeff4")),
+        ("Car Dealership Tycoon", S.format("1ce98361b37a19418d7826278e25de05")),
+        ("My Restaurant", S.format("5825bb1c77b3554badafb6cca5d5ff4c")),
+        ("Airport Tycoon", S.format("7858b2d226c6d943a0bcecaef7cd1fac")),
+        ("Hospital Tycoon", S.format("f65ce61b06e1234698c9777e27588673")),
+        ("Aquarium Tycoon", S.format("9751b90d5d444c40b25942cc55379980")),
+        ("Your Zoo", ZO),
     ]},
     "parkour": {"name": "Паркур \U0001f3c3", "emoji": "\U0001f3c3", "games": [
-        ("Tower of Hell", "0000000011"),
-        ("The Floor is Lava", "0000000012"),
-        ("Escape Running Head", "0000000013"),
-        ("Parkour", "0000000014"),
-        ("Obby", "0000000015"),
-        ("Hunger Games", "0000000016"),
-        ("Super Bomb Survival", "0000000017"),
-        ("Jailbreak Obby", "0000000018"),
-        ("Mega Obby", "0000000019"),
-        ("Tower Defense Simulator", "0000000020"),
+        ("Tower of Hell", S.format("20ee7cba5d22e5408e6142c2365e6567")),
+        ("Flood Escape 2", S.format("8f0cc960daf1af4e9d6cfc10735d5386")),
+        ("Mega Fun Obby", S.format("c95cdc7635391f488decf79cb0919ea0")),
+        ("Parkour Run", S.format("83ffc6cedefa3343bab51a81fd90345a")),
+        ("Troll Obby", S.format("d5745a12a440594187b1f39266396ac0")),
+        ("Tower Defense Simulator", S.format("d1ef2bc7c48e3846a06f88833415298a")),
+        ("Super Bomb Survival", S.format("2df224cf32cba04381203e0692bec1b6")),
+        ("Omega Obby", S.format("0a4911b1f66d6241a4ad3ad1a56a6c54")),
+        ("Untitled Parkour Game", S.format("5560adf83b162b4aba47884b3b2976a1")),
+        ("STEEP STEPS", S.format("b455031aefdc4e4898d6b2460a45c2ba")),
     ]},
     "horror": {"name": "Хоррор \U0001f47b", "emoji": "\U0001f47b", "games": [
-        ("Doors", "0000000021"),
-        ("The Rake", "0000000022"),
-        ("The Mimic", "0000000023"),
-        ("Pressure", "0000000024"),
-        ("Dead Silence", "0000000025"),
-        ("Alone", "0000000026"),
-        ("Finders Keepers", "0000000027"),
-        ("The Intruder", "0000000028"),
-        ("Grace", "0000000029"),
-        ("The Night House", "0000000030"),
+        ("Doors", S.format("29d4c511e035c04482e3fa53ace32501")),
+        ("The Rake", S.format("009191bd982a4c448a6a2ebba34e3baf")),
+        ("The Mimic", S.format("cfe7cded18ffa040b6a9c56a546a9551")),
+        ("Pressure", S.format("a2fb30a9fa09e442a223354637304923")),
+        ("Dead Silence", S.format("39ad47a381ae98448cb17db53184a4fd")),
+        ("Alone", S.format("a567ee68104c54478b3ffe4adbdf7106")),
+        ("Finders Keepers", S.format("697e1a50b6b1a743aaac429cfe6e5e0d")),
+        ("The Intruder", S.format("56a22df944028242b94e91852a170cfa")),
+        ("The Cultist", S.format("aa9345a6c57ba04c89d136fbc6aca648")),
+        ("Stifled Fears (Voice)", S.format("6e3faf9a2099fc4388c9ba078b4a933b")),
     ]},
     "puzzles": {"name": "Головоломки \U0001f9e9", "emoji": "\U0001f9e9", "games": [
-        ("Natural Disaster Survival", "0000000031"),
-        ("Escape Room", "0000000032"),
-        ("Find the Markers", "0000000033"),
-        ("The Maze", "0000000034"),
-        ("Jailbreak Puzzle", "0000000035"),
-        ("Simon Says", "0000000036"),
-        ("Survive the Block", "0000000037"),
-        ("Block Puzzle", "0000000038"),
-        ("Treasure Hunt", "0000000039"),
-        ("Murder Mystery 2", "0000000040"),
+        ("Apeirophobia", S.format("05844940775811469fea443191112be4")),
+        ("Escape Room", S.format("958128a9e901b447b1e7e9e6d4738dea")),
+        ("Teamwork Puzzles 2", S.format("341a2f2aef8aaf4c8390f5fbf75f3954")),
+        ("Find The Markers", S.format("28cc46d6a5694b4a93f87cf8cc545cac")),
+        ("Color or Die", S.format("5c531e07d0d3e04e9e44b737504ac685")),
+        ("Cheese Escape", S.format("cfc2a121ab7050479e395f652d0c68af")),
+        ("Treasure Hunt", S.format("cf1dd38483209346a600f955e54c8c35")),
+        ("Block Puzzle", S.format("1d60ccdee6d42c47ae861c479662a030")),
+        ("The Maze", S.format("d7977219896e5c4bb8e966fd7765d4e2")),
+        ("Simon Says", S.format("0c1522f44eab7e4fa24ce93eed75fdcb")),
     ]},
     "fighting": {"name": "Драки \u2694\ufe0f", "emoji": "\u2694\ufe0f", "games": [
-        ("Arsenal", "0000000041"),
-        ("Bad Business", "0000000042"),
-        ("Rivals", "0000000043"),
-        ("Piggy", "0000000044"),
-        ("The Strongest Battlegrounds", "0000000045"),
-        ("Anime Fighters Simulator", "0000000046"),
-        ("SFOTH IV", "0000000047"),
-        ("Combat Warriors", "0000000048"),
-        ("Blade Ball", "0000000049"),
-        ("Sword Fight on Heights", "0000000050"),
+        ("Combat Warriors", S.format("cc5fa6f7738c654d8718c5533c45acfd")),
+        ("The Strongest Battlegrounds", S.format("4fdd9d9933bd6642b07b604257ea4d38")),
+        ("Untitled Boxing Game", S.format("88f04f983728834493574267e97a27be")),
+        ("Heroes Battlegrounds", S.format("cd5785fbbce45d45910d8cdcfe848292")),
+        ("Elemental Battlegrounds", S.format("6c554fbf12c18b40878ec871362287de")),
+        ("Jujutsu Shenanigans", S.format("c781ef79f4033a40984cabbfc92fe1da")),
+        ("Super Doomspire", S.format("3848f2720f63154ba6396afc60ed3a90")),
+        ("Project Smash", S.format("f44fc9c95f043e48b83da8d1d4cbf6d3")),
+        ("Blox Fruits", S.format("c58470844894254c91ae8505b9e5a211")),
+        ("Deepwoken", S.format("64d1e6955775e2408d0df82e7825b68f")),
     ]},
 }
 
@@ -162,7 +165,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Нажми кнопку внизу \U0001f447", reply_markup=main_menu())
 
 def format_games(games):
-    return "\n".join(f"\U0001f539 <a href='{LINK.format(id)}'>{name}</a>" for name, id in games)
+    return "\n".join(f"\U0001f539 <a href='{url}'>{name}</a>" for name, url in games)
 
 async def show_genre(update, key):
     genre = GENRES[key]
@@ -172,11 +175,11 @@ async def show_genre(update, key):
 async def random_game(update: Update):
     genre_key = random.choice(list(GENRES.keys()))
     genre = GENRES[genre_key]
-    name, id = random.choice(genre["games"])
+    name, url = random.choice(genre["games"])
     await update.message.reply_text(
         f"\U0001f3b2 <b>Рандом</b>\n\n"
         f"Жанр: {genre['emoji']} {genre['name']}\n"
-        f"Игра: <a href='{LINK.format(id)}'>{name}</a>",
+        f"Игра: <a href='{url}'>{name}</a>",
         parse_mode="HTML", reply_markup=main_menu()
     )
 
